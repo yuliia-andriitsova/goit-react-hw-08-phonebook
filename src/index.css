@@ -13,3 +13,31 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+form {
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+  background-color: antiquewhite;
+}
+
+button {
+  margin: 10px 0;
+  background-color: bisque;
+  width: 120px;
+  border-radius: 3px;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+li {
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+}
+
+.btnSubmit {
+  margin: 20px auto;
+}
