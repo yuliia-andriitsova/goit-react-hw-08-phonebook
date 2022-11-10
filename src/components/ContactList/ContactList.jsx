@@ -1,10 +1,12 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getFilteredContacts } from 'redux/phonebook/selectors';
 import { ContactItem } from './ContactItem';
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
+import { fetchContacts } from 'redux/phonebook/operations';
 
 const ContactList = () => {
   const contacts = useSelector(getFilteredContacts);
+  const dispatch = useDispatch();
 
   const idRef = useRef();
   const isLoading = useSelector(state => state.contacts.isLoading);
@@ -12,6 +14,10 @@ const ContactList = () => {
   const changeId = id => {
     idRef.current = id;
   };
+
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, [dispatch]);
 
   return (
     <>
