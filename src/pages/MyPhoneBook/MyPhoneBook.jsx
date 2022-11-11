@@ -10,12 +10,18 @@ export default function MyPhoneBook() {
   const isLoading = useSelector(getIsLoading);
   const error = useSelector(getError);
   return (
-    <div>
-      <PhoneBook />
-      <h2> Contacts</h2>
-      {isLoading && !error && <p> Request in progress...</p>}
-      <Filter />
-      <ContactList />
+    <div className="myPhoneBook">
+      <div>
+        <h2 className="contactsTitle"> Add contact</h2>
+        <PhoneBook />
+        {isLoading && !error && <p> Request in progress...</p>}
+        <Filter />
+      </div>
+
+      <div>
+        <h2 className="contactsTitle"> Contacts</h2>
+        <ContactList />
+      </div>
     </div>
   );
 }

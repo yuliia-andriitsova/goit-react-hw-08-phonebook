@@ -1,23 +1,14 @@
 import { lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import authSelectors from 'redux/auth/auth-selectors';
-import { PhoneBook } from './PhoneBook';
-import { Filter } from './Filter';
-import { ContactList } from './ContactList';
-import { fetchContacts } from 'redux/phonebook/operations';
-import { getIsLoading } from 'redux/phonebook/selectors';
-import { getError } from 'redux/phonebook/selectors';
-import Navigation from './Navigation/Navigation';
-// import RegistrationForm from 'pages/RegistrationForm/RegistrationForm';
-// import LoginForm from 'pages/LoginForm/LoginForm';
-// import MyPhoneBook from 'pages/MyPhoneBook/MyPhoneBook';
-import NavigationPhonebook from './NavigationPhonebook/NavigationPhonebook';
-import Header from './Header/Header';
+import { ToastContainer } from 'react-toastify';
+
+import Home from './Home/Home';
 import PrivatRoute from './PrivatRoute/PrivatRoute';
 import PublicRoute from './PublicRoute/PublicRoute';
 import { getCurrentUser } from 'redux/auth/auth-operations';
+import Layout from './Layout/Layout';
 
 const RegistrationForm = lazy(() =>
   import('pages/RegistrationForm/RegistrationForm')
@@ -27,9 +18,6 @@ const MyPhoneBook = lazy(() => import('pages/MyPhoneBook/MyPhoneBook'));
 
 const App = () => {
   const dispatch = useDispatch();
-  const isLoading = useSelector(getIsLoading);
-  const isLoggedIn = useSelector(authSelectors.selectIsLoggedIn);
-  const error = useSelector(getError);
 
   useEffect(() => {
     dispatch(getCurrentUser());
@@ -43,26 +31,40 @@ const App = () => {
         flexDirection: 'column',
         justifyContent: 'flexStart',
         alignItems: 'center',
-        fontSize: 15,
+        fontSize: 12,
         color: '#010101',
         gap: 10,
         border: '2 px solid red',
-        padding: '50px',
+        // padding: '50px',
       }}
     >
-      <Header />
-      <Suspense fallback={<p>Loading......</p>}>
-        <Routes>
-          <Route path="/" element={<PublicRoute />}>
-            <Route path="/register" element={<RegistrationForm />} />
-            <Route path="/login" element={<LoginForm />} />
-          </Route>
+      <Layout>
+        <Suspense fallback={<p>Loading......</p>}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/" element={<PublicRoute />}>
+              <Route path="register" element={<RegistrationForm />} />
+              <Route path="login" element={<LoginForm />} />
+            </Route>
 
-          <Route path="/" element={<PrivatRoute />}>
-            <Route path="/contacts" element={<MyPhoneBook />} />
-          </Route>
-        </Routes>
-      </Suspense>
+            <Route path="/" element={<PrivatRoute />}>
+              <Route path="contacts" element={<MyPhoneBook />} />
+            </Route>
+          </Routes>
+        </Suspense>
+        <ToastContainer
+          position="top-center"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
+      </Layout>
     </div>
   );
 };

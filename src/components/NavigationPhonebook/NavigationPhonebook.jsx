@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 export default function NavigationPhonebook() {
   return (
     <div>
-      <NavLink to="/contacts"> Список контактів</NavLink>
+      <NavLink to="/contacts"> </NavLink>
     </div>
   );
 }

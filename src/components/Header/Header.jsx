@@ -1,31 +1,28 @@
 import Navigation from 'components/Navigation/Navigation';
 import NavigationPhonebook from 'components/NavigationPhonebook/NavigationPhonebook';
+import NavigationUserMenu from 'components/NavigationUserMenu/NavigationUserMenu';
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 import authSelectors from 'redux/auth/auth-selectors';
-import authOperations from 'redux/auth/auth-operations';
+import { SlCallIn } from 'react-icons/sl';
 
 export default function Header() {
   const isLoggedIn = useSelector(authSelectors.selectIsLoggedIn);
-  const dispatch = useDispatch();
+
   return (
     <header>
-      <h1>Welcome, this is home page </h1>
+      <NavLink className="link" to="/">
+        Home <SlCallIn />
+      </NavLink>
       {isLoggedIn ? (
         <>
-          {/* <PhoneBook />
-          <h2> Contacts</h2>
-          {isLoading && !error && <p> Request in progress...</p>}
-          <Filter />
-          <ContactList /> */}
           <NavigationPhonebook />
+          <NavigationUserMenu />
         </>
       ) : (
         <Navigation />
       )}
-      <button onClick={() => dispatch(authOperations.logOut())} type="button">
-        Вихід
-      </button>
     </header>
   );
 }

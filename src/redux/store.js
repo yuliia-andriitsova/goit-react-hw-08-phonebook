@@ -1,5 +1,4 @@
-import storage from 'redux-persist/lib/storage';
-import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
+import { configureStore } from '@reduxjs/toolkit';
 import {
   FLUSH,
   REHYDRATE,
@@ -8,18 +7,11 @@ import {
   PURGE,
   REGISTER,
   persistStore,
-  persistReducer,
 } from 'redux-persist';
-
 import { rootReducer } from './rootReducer';
-// import phonebookReducer from './phonebook/phonebookSlice';
-// import filterReducer from './phonebook/filterSlice';
-// import authReducer from './auth/auth-slice';
 
 export const store = configureStore({
   reducer: rootReducer,
-  // auth: persistReducer(authPersistConfig, authReducer),
-  // contacts: phonebookReducer,
 
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

@@ -10,9 +10,18 @@ export function Filter() {
   };
   return (
     <>
-      <p>Find contacts by name</p>
-
-      <input type="text" name="filter" onChange={onFilterName} value={filter} />
+      <h2 className="contactsTitle">Find contacts by name</h2>
+      <div className="findContact">
+        <>
+          <input
+            className="inputContact"
+            type="text"
+            name="filter"
+            onChange={onFilterName}
+            value={filter}
+          />
+        </>
+      </div>
     </>
   );
 }

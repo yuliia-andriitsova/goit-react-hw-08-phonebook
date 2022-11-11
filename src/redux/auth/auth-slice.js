@@ -1,3 +1,4 @@
+import { toast } from 'react-toastify';
 import { createSlice } from '@reduxjs/toolkit';
 import authOperations from './auth-operations';
 
@@ -39,6 +40,7 @@ const authSlice = createSlice({
     [authOperations.logIn.rejected](state, action) {
       state.isLoading = false;
       state.error = action.payload;
+      toast.error('Invalid user!');
     },
 
     [authOperations.logOut.pending](state) {
@@ -58,7 +60,7 @@ const authSlice = createSlice({
       state.isLoading = true;
     },
     [authOperations.getCurrentUser.fulfilled](state, action) {
-      state.user = action.payload.user;
+      state.user = action.payload;
       state.isLoading = false;
       state.isLoggedIn = true;
     },

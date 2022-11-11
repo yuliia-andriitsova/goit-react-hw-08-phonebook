@@ -9,10 +9,6 @@ const RegistrationForm = () => {
   const [repassword, resetPassword] = useState('');
   const dispatch = useDispatch();
 
-  // const handleAddUser = (name, email) => {
-  //   if (user.some(user.name))
-  // };
-
   const handleChangeName = event => {
     const { value } = event.target;
     setName(value);
@@ -41,15 +37,15 @@ const RegistrationForm = () => {
   return (
     <form onSubmit={handleSubmit}>
       <label>
-        Ведіть ваше ім'я
+        Name
         <input value={name} type="text" onChange={handleChangeName} />
       </label>
       <label>
-        Введіть пошту
+        Email
         <input value={email} type="email" onChange={handleChangeEmail} />
       </label>
       <label>
-        Введіть пароль
+        Password
         <input
           value={password}
           type="password"
@@ -57,14 +53,16 @@ const RegistrationForm = () => {
         />
       </label>
       <label>
-        Введіть пароль
+        Password
         <input
           value={repassword}
           type="password"
           onChange={handleChangeRepassword}
         />
       </label>
-      <button type="submit">Зареєструватися</button>
+      <button type="submit" className="btnSubmit">
+        Sign up
+      </button>
     </form>
   );
 };

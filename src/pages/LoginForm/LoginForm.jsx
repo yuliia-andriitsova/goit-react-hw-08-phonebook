@@ -7,15 +7,15 @@ const LoginForm = () => {
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
 
-  const handleChangeEmail = event => {
-    const { value } = event.target;
-    setEmail(value);
-  };
+  // const handleChangeEmail = event => {
+  //   const { value } = event.target;
+  //   setEmail(value);
+  // };
 
-  const handleChangePassword = event => {
-    const { value } = event.target;
-    setPassword(value);
-  };
+  // const handleChangePassword = event => {
+  //   const { value } = event.target;
+  //   setPassword(value);
+  // };
 
   const handleChange = event => {
     const { value } = event.target;
@@ -36,7 +36,7 @@ const LoginForm = () => {
   return (
     <form onSubmit={handleSubmit}>
       <label>
-        Введіть пошту
+        Email
         <input
           value={email}
           type="email"
@@ -45,7 +45,7 @@ const LoginForm = () => {
         />
       </label>
       <label>
-        Введіть пароль
+        Password
         <input
           value={password}
           type="password"
@@ -53,7 +53,9 @@ const LoginForm = () => {
           name="password"
         />
       </label>
-      <button type="submit">Увійти</button>
+      <button type="submit" className="btnSubmit">
+        Log in
+      </button>
     </form>
   );
 };

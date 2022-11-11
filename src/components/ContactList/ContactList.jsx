@@ -21,7 +21,7 @@ const ContactList = () => {
 
   return (
     <>
-      <ul>
+      <ul className="contactList">
         {contacts.map(contact => (
           <ContactItem
             name={contact.name}
